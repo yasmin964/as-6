@@ -1,5 +1,6 @@
 // ProjectList.tsx
 import React from 'react';
+import Head from 'next/head';
 import styles from '@styles/global.module.css';
 import Image from 'next/image';
 
@@ -15,6 +16,10 @@ interface ProjectListProps {
 const ProjectList: React.FC<ProjectListProps> = ({ projects }) => {
   return (
     <div>
+      <Head>
+        <title>{'Project List'}</title>
+        <meta name="description" content="Description of the projects." />
+      </Head>
       <div className={styles.ex}>
         <h2 className={styles.subtit}>Some Examples of Website Projects</h2>
         <div className={styles.examples}>

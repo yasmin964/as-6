@@ -1,6 +1,10 @@
+
 import React, { useState } from "react";
 import Image from 'next/image';
+import Head from 'next/head';
 import styles from '@styles/global.module.css';
+import fetch from 'node-fetch';
+import axios from 'axios';
 
 interface ComicData {
   safe_title: string;
@@ -11,39 +15,22 @@ interface ComicData {
   day: string;
 }
 
+interface ComicFetcherProps {
+  initialComicData?: ComicData;
+}
 
-const ComicFetcher: React.FC= () => {
+const ComicFetcher: React.FC<ComicFetcherProps> = ({ initialComicData }) => {
   const [email, setEmail] = useState('');
-  const [comicTitle, setComicTitle] = useState('');
-  const [comicImgSrc, setComicImgSrc] = useState('');
-  const [comicImgAlt, setComicImgAlt] = useState('');
+  const [comicTitle, setComicTitle] = useState(initialComicData?.safe_title || '');
+  const [comicImgSrc, setComicImgSrc] = useState(initialComicData?.img || '');
+  const [comicImgAlt, setComicImgAlt] = useState(initialComicData?.alt || '');
   const [comicDate, setComicDate] = useState('');
   const [showComic, setShowComic] = useState(false);
-
-  const fetchComicID = async (email: string): Promise<number> => {
-    const params = new URLSearchParams({ email });
-    console.log('Fetching comic ID with email:', email);
-    const response = await fetch(`https://fwd.innopolis.university/api/hw2?${params.toString()}`);
-    if (!response.ok) {
-      throw new Error('Failed to fetch comic ID');
-    }
-    return response.json();
-  };
-
-  const fetchComic = async (comicID: number): Promise<ComicData> => {
-    console.log('Fetching comic with ID:', comicID);
-    const response = await fetch(`https://fwd.innopolis.university/api/comic?id=${comicID}`);
-    if (!response.ok) {
-      throw new Error('Failed to fetch comic');
-    }
-    return response.json();
-  };
 
   const handleGetComic = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
       const comicID = await fetchComicID(email);
-      console.log('Comic ID received:', comicID);
       const comicData = await fetchComic(comicID);
 
       setComicTitle(comicData.safe_title);
@@ -65,6 +52,10 @@ const ComicFetcher: React.FC= () => {
 
   return (
     <div className={styles.comic}>
+      <Head>
+        <title>{comicTitle ? `XKCD Comic: ${comicTitle}` : 'XKCD Comic Fetcher'}</title>
+        <meta name="description" content="Fetch and display XKCD comics." />
+      </Head>
       <div className={styles.comic__head}>
         <div className={styles.comic__name}>
           <h1>XKCD Comic Fetcher</h1>
@@ -88,18 +79,45 @@ const ComicFetcher: React.FC= () => {
       {showComic && (
         <div id="comic-container">
           <h2 id="safe_title">{comicTitle}</h2>
-          <Image id="comic-img" src={comicImgSrc} alt={comicImgAlt} />
+          <Image id="comic-img" src={comicImgSrc} alt={comicImgAlt} width={500} height={500} />
           <p id="comic-date">{comicDate}</p>
         </div>
       )}
-      <div className={styles.top__content}>
-        <div className={styles.content_container}>
-          <div className={styles.subtitle1}>
-        </div>
-      </div>
-      </div>
     </div>
   );
 };
+
+
+
+async function fetchComicID(email: string): Promise<number> {
+  const params = new URLSearchParams({ email });
+  console.log('Fetching comic ID with email:', email);
+  const response = await axios.get(`https://fwd.innopolis.university/api/hw2`, { params });
+  if (response.status !== 200) {
+    throw new Error('Failed to fetch comic ID');
+  }
+  return response.data as number;
+}
+
+async function fetchComic(comicID: number): Promise<ComicData> {
+  console.log('Fetching comic with ID:', comicID);
+  const response = await axios.get(`https://fwd.innopolis.university/api/comic?id=${comicID}`);
+  if (response.status !== 200) {
+    throw new Error('Failed to fetch comic');
+  }
+  return response.data as ComicData;
+}
+
+
+export async function getServerSideProps() {
+  try {
+    const comicID = await fetchComicID('default@example.com'); // Replace with a default email if needed
+    const initialComicData = await fetchComic(comicID);
+    return { props: { initialComicData } };
+  } catch (error) {
+    console.error('Failed to fetch initial comic:', error);
+    return { props: { initialComicData: null } };
+  }
+}
 
 export default ComicFetcher;
