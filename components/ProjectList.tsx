@@ -46,7 +46,9 @@ const ProjectList: React.FC<ProjectListProps> = ({ projects }) => {
             </li>
           ))}
           <li>
-            These and many other works are presented in my GitHub, by clicking on the link you can get acquainted with them, I try to update it regularly.
+            These and many other works are presented in my GitHub, by clicking
+            on the link you can get acquainted with them, I try to update it
+            regularly.
           </li>
         </ul>
       </div>

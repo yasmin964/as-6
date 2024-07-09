@@ -6,12 +6,7 @@
     "plugin:@typescript-eslint/recommended",
     "plugin:prettier/recommended"
   ],
-  "plugins": [
-    "react",
-    "react-hooks",
-    "@typescript-eslint",
-    "prettier"
-  ],
+  "plugins": ["react", "react-hooks", "@typescript-eslint", "prettier"],
   "env": {
     "browser": true,
     "es2021": true,
@@ -29,4 +24,3 @@
     "react/react-in-jsx-scope": "off"
   }
 }
-  

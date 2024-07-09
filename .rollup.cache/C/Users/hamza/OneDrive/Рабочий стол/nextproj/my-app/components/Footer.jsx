@@ -1,7 +1,9 @@
 const Footer = () => {
-    return (<footer>
+  return (
+    <footer>
       <p>&copy; {new Date().getFullYear()} Innopolis University</p>
-    </footer>);
+    </footer>
+  );
 };
 export default Footer;
 //# sourceMappingURL=Footer.jsx.map

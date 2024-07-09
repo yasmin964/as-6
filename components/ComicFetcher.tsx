@@ -1,5 +1,4 @@
-
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import Image from 'next/image';
 import Head from 'next/head';
 import styles from '@styles/global.module.css';
@@ -21,7 +20,9 @@ interface ComicFetcherProps {
 
 const ComicFetcher: React.FC<ComicFetcherProps> = ({ initialComicData }) => {
   const [email, setEmail] = useState('');
-  const [comicTitle, setComicTitle] = useState(initialComicData?.safe_title || '');
+  const [comicTitle, setComicTitle] = useState(
+    initialComicData?.safe_title || '',
+  );
   const [comicImgSrc, setComicImgSrc] = useState(initialComicData?.img || '');
   const [comicImgAlt, setComicImgAlt] = useState(initialComicData?.alt || '');
   const [comicDate, setComicDate] = useState('');
@@ -53,7 +54,9 @@ const ComicFetcher: React.FC<ComicFetcherProps> = ({ initialComicData }) => {
   return (
     <div className={styles.comic}>
       <Head>
-        <title>{comicTitle ? `XKCD Comic: ${comicTitle}` : 'XKCD Comic Fetcher'}</title>
+        <title>
+          {comicTitle ? `XKCD Comic: ${comicTitle}` : 'XKCD Comic Fetcher'}
+        </title>
         <meta name="description" content="Fetch and display XKCD comics." />
       </Head>
       <div className={styles.comic__head}>
@@ -72,14 +75,22 @@ const ComicFetcher: React.FC<ComicFetcherProps> = ({ initialComicData }) => {
             />
           </form>
           <div className={styles.comic__button}>
-            <button id="get-comic-btn" onClick={handleGetComic}>Get a random comic</button>
+            <button id="get-comic-btn" onClick={handleGetComic}>
+              Get a random comic
+            </button>
           </div>
         </div>
       </div>
       {showComic && (
         <div id="comic-container">
           <h2 id="safe_title">{comicTitle}</h2>
-          <Image id="comic-img" src={comicImgSrc} alt={comicImgAlt} width={500} height={500} />
+          <Image
+            id="comic-img"
+            src={comicImgSrc}
+            alt={comicImgAlt}
+            width={500}
+            height={500}
+          />
           <p id="comic-date">{comicDate}</p>
         </div>
       )}
@@ -87,12 +98,12 @@ const ComicFetcher: React.FC<ComicFetcherProps> = ({ initialComicData }) => {
   );
 };
 
-
-
 async function fetchComicID(email: string): Promise<number> {
   const params = new URLSearchParams({ email });
   console.log('Fetching comic ID with email:', email);
-  const response = await axios.get(`https://fwd.innopolis.university/api/hw2`, { params });
+  const response = await axios.get(`https://fwd.innopolis.university/api/hw2`, {
+    params,
+  });
   if (response.status !== 200) {
     throw new Error('Failed to fetch comic ID');
   }
@@ -101,13 +112,14 @@ async function fetchComicID(email: string): Promise<number> {
 
 async function fetchComic(comicID: number): Promise<ComicData> {
   console.log('Fetching comic with ID:', comicID);
-  const response = await axios.get(`https://fwd.innopolis.university/api/comic?id=${comicID}`);
+  const response = await axios.get(
+    `https://fwd.innopolis.university/api/comic?id=${comicID}`,
+  );
   if (response.status !== 200) {
     throw new Error('Failed to fetch comic');
   }
   return response.data as ComicData;
 }
-
 
 export async function getServerSideProps() {
   try {

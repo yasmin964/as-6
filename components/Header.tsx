@@ -1,4 +1,3 @@
-
 import React from 'react';
 import styles from '@styles/global.module.css';
 import Image from 'next/image';
@@ -20,7 +19,9 @@ const Header: React.FC<HeaderProps> = ({ headerLinks, headerContent }) => {
       </div>
       <div className={styles.header__content}>
         {headerContent.map((link, index) => (
-          <a key={index} href={link.href}>{link.text}</a>
+          <a key={index} href={link.href}>
+            {link.text}
+          </a>
         ))}
       </div>
     </header>

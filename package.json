@@ -2,10 +2,12 @@
   "name": "my-app",
   "version": "0.1.0",
   "private": true,
+  "endOfLine": "lf",
   "scripts": {
     "dev": "next dev",
-    "build": "rollup -c",
+    "build": "next build",
     "start": "next start",
+    "rollup": "rollup -c",
     "lint": "eslint src/pages/**/*.{js,jsx,ts,tsx}",
     "lint:write": "eslint --debug src/pages/ --fix",
     "format": "prettier --write src/pages/**/*.{js,jsx,ts,tsx,json,css,md}"

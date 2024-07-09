@@ -1,4 +1,3 @@
-
 /* * {
   margin: 0;
   padding: 0;
@@ -15,10 +14,9 @@ a {
   padding-top: 70px;
   font-weight: 400;
   font-size: 17px;
-  
 }
-.subtit{
-  font-family: "Roboto", sans-serif;
+.subtit {
+  font-family: 'Roboto', sans-serif;
   padding-top: 120px;
 }
 .examples {
@@ -30,14 +28,15 @@ a {
   gap: 30px;
   align-content: center;
 }
-.w1, .w2 {
+.w1,
+.w2 {
   padding-top: 15px;
 }
 .subtitle2 {
   padding-left: 220px;
   padding-top: 40px;
   font-size: 17px;
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 .subpar2 {
   padding-left: 440px;
@@ -47,14 +46,14 @@ a {
   padding-top: 40px;
   width: 700px;
   padding-bottom: 50px;
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 .li_title {
   font-weight: bold;
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 .subtitle1 {
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   padding-top: 60px;
   padding-left: 220px;
   font-weight: 400;
@@ -67,7 +66,7 @@ a {
   width: 700px;
   font-size: 17px;
   font-weight: 400;
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 .comic {
   display: flex;
@@ -86,7 +85,7 @@ a {
 }
 
 .comic__head {
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -96,14 +95,13 @@ a {
 }
 
 .comic__name {
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   flex: 1;
 }
-.comic__placeholders{
+.comic__placeholders {
   display: flex;
   flex-direction: column;
   align-items: center;
-
 }
 
 .comic__button {
@@ -115,13 +113,13 @@ a {
   padding-top: 20px;
   margin-bottom: 10px;
   text-align: center;
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 
 #comic_date {
   margin-bottom: 20px;
   text-align: center;
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 
 #comic_container {
@@ -142,7 +140,7 @@ a {
   gap: 15px;
   padding-top: 15px;
   text-decoration: none;
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 .header__content {
   display: flex;
@@ -152,5 +150,5 @@ a {
   justify-content: center;
   font-size: 15px;
   text-decoration: none;
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
 }

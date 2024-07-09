@@ -1,9 +1,11 @@
 import Layout from '@components/Layout';
 import ComicFetcher from '@components/ComicFetcher';
 const ComicsPage = () => {
-    return (<Layout>
+  return (
+    <Layout>
       <ComicFetcher />
-    </Layout>);
+    </Layout>
+  );
 };
 export default ComicsPage;
 //# sourceMappingURL=comics.jsx.map

@@ -17,24 +17,12 @@
       }
     ],
     "paths": {
-      "@/*": [
-        "./src/*"
-      ],
-      "@components/*": [
-        "components/*"
-      ],
-      "@styles/*": [
-        "styles/*"
-      ],
-      "@img/*": [
-        "img/*"
-      ]
+      "@/*": ["./src/*"],
+      "@components/*": ["components/*"],
+      "@styles/*": ["styles/*"],
+      "@img/*": ["img/*"]
     },
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "noEmit": true,
     "moduleResolution": "node",
@@ -47,7 +35,5 @@
     ".next/types/**/*.ts",
     "**/*.svelte"
   ],
-  "exclude": [
-    "node_modules"
-  ]
+  "exclude": ["node_modules"]
 }
